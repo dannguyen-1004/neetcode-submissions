@@ -1,0 +1,34 @@
+class Solution:
+
+    def encode(self, strs: List[str]) -> str:
+        #combine into string and seperated by length#
+        #length is str length and # is when length end
+        encoded = ""
+        
+        for word in strs:
+            encoded += str(len(word)) + "#" + word
+        
+        return encoded
+        
+
+    def decode(self, s: str) -> List[str]:
+        if s is None:
+            return []
+            
+        decoded = []
+        i = 0
+        while i < len(s):
+            j = i
+
+            while s[j] != "#":
+                j += 1
+            
+            length = int(s[i:j])
+
+            start = j + 1
+            end = j + 1 + length
+            decoded.append(s[start:end])
+
+            i = end
+
+        return decoded
